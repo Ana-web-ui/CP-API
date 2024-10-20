@@ -1,9 +1,6 @@
-import fetch from "node-fetch";
-
 const method = { method: "GET" };
 const url = "https://jsonplaceholder.typicode.com";
 const usersResource = "/posts";
-const id = "/2"
 
 async function handleResponse(res) {
   const json = await res.json();
@@ -22,14 +19,25 @@ async function handleResponse(res) {
   return user;
 }
 
-function handleData(user) {
-  console.log(user);
+function insertHTML(user) {
+  document.querySelector("#text").innerHTML = `
+    <p>UserId: ${user.userId}</p>
+    <p>Id: ${user.id}</p>
+    <p>Título: ${user.title}</p>
+    <p>Conteúdo: ${user.body}</p>
+`
 }
 
 function run() {
-  fetch(url + usersResource + id, method)
+  let randomId = `/${
+    Math.floor(Math.random() * 100 + 1) // +1 to take out the 0
+  }`;
+
+  fetch(url + usersResource + randomId, method)
     .then(handleResponse)
-    .then(handleData);
+    .then(insertHTML);
 }
 
-run();
+document.querySelector("#button").addEventListener("click", () => {
+  run();
+});
