@@ -25,7 +25,7 @@ function insertHTML(user) {
     <p>Id: ${user.id}</p>
     <p>Título: ${user.title}</p>
     <p>Conteúdo: ${user.body}</p>
-`
+`;
 }
 
 function run() {
