@@ -28,16 +28,12 @@ function insertHTML(user) {
 `;
 }
 
-function run() {
+document.querySelector("#button").addEventListener("click", () => {
   let randomId = `/${
-    Math.floor(Math.random() * 100 + 1) // +1 to take out the 0
+    Math.floor(Math.random() * 100 + 1)
   }`;
 
   fetch(url + usersResource + randomId, method)
     .then(handleResponse)
     .then(insertHTML);
-}
-
-document.querySelector("#button").addEventListener("click", () => {
-  run();
 });
